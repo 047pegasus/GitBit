@@ -1,6 +1,6 @@
 <div align="center">
 <h1 align="center">
-<img src="" width="100" />
+<img src="https://github.com/047pegasus/GitBit/blob/24268bb44de7187eaf1dee2a25df323e7b521279/logo.jpg" width="300" />
 <br>GitBit</h1>
 <h3>◦ An online monitoring 🎢 and tools 🪛 One Stop Shop for Github ✅</h3>
 <h3>◦ Developed with MERN, Fastn and other cutting edge tools.</h3>
