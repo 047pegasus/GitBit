@@ -26,7 +26,6 @@ class _ToolsState extends State<Tools> {
               'GitHub Tools 🛠️',
               style: GoogleFonts.montserrat(
                 fontSize: 36,
-            
                 color: Colors.white,
               ),
             ),
@@ -79,7 +78,10 @@ class _ToolsState extends State<Tools> {
         icon: icon,
         label: Text(
           label,
-          style: TextStyle(fontSize: 18),
+          style: GoogleFonts.montserrat(
+            fontSize: 18,
+            color: Colors.white,
+          ),
         ),
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(Colors.transparent),
