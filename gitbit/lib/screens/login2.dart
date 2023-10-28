@@ -4,25 +4,6 @@ import 'package:gitbit/screens/login.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: SignInPage(),
-      theme: ThemeData(
-        primaryColor: MyColors.navyBlue,
-        hintColor: MyColors.tealGreen,
-        scaffoldBackgroundColor: MyColors.darkGrey,
-      ),
-    );
-  }
-}
-
 class SignInPage extends StatefulWidget {
   @override
   _SignInPageState createState() => _SignInPageState();
@@ -79,7 +60,11 @@ class _SignInPageState extends State<SignInPage> {
             SizedBox(height: 20.0),
             AnimatedGoButton(
               onPressed: () {
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => UsernameInputScreen()));
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (_) => UsernameInputScreen()),
+                  (route) => false,
+                );
               },
             ),
           ],
@@ -138,7 +123,10 @@ class AnimatedGoButton extends StatelessWidget {
 
 class MyColors {
   static const Color darkGrey = Color(0xFF0F0F0F);
-  static const Color navyBlue = Color(0xFF232D3F);
   static const Color tealGreen = Color(0xFF005B41);
   static const Color darkCyan = Color(0xFF008170);
+}
+
+void main() {
+  runApp(MaterialApp(home: SignInPage()));
 }
