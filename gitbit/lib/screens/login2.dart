@@ -1,8 +1,26 @@
-import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/material.dart';
 import 'package:gitbit/screens/login.dart';
 import 'package:lottie/lottie.dart';
 
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: SignInPage(),
+      theme: ThemeData(
+        primaryColor: MyColors.navyBlue,
+        hintColor: MyColors.tealGreen,
+        scaffoldBackgroundColor: MyColors.darkGrey,
+      ),
+    );
+  }
+}
 
 class SignInPage extends StatefulWidget {
   @override
@@ -16,7 +34,7 @@ class _SignInPageState extends State<SignInPage> {
     'Use Our Tools',
   ];
 
-  int _currentSlideIndex = 0; // Track the current slide index
+  int _currentSlideIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +45,7 @@ class _SignInPageState extends State<SignInPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              welcomeTexts[
-                  _currentSlideIndex], // Use the current slide index to get the welcome text
+              welcomeTexts[_currentSlideIndex],
               style: TextStyle(
                 fontSize: 20,
                 color: Colors.white,
@@ -55,20 +72,10 @@ class _SignInPageState extends State<SignInPage> {
               ),
             ),
             SizedBox(height: 20.0),
-            ElevatedButton(
+            AnimatedGoButton(
               onPressed: () {
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>UsernameInputScreen()));
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => UsernameInputScreen()));
               },
-              child: Text(
-                'Go',
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.white,
-                ),
-              ),
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(MyColors.tealGreen),
-              ),
             ),
           ],
         ),
@@ -81,9 +88,53 @@ class _SignInPageState extends State<SignInPage> {
   }
 }
 
+class AnimatedGoButton extends StatelessWidget {
+  final VoidCallback onPressed;
+
+  AnimatedGoButton({required this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onPressed,
+        splashColor: Colors.teal,
+        borderRadius: BorderRadius.circular(25.0),
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+          decoration: BoxDecoration(
+            color: MyColors.tealGreen,
+            borderRadius: BorderRadius.circular(25),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Go',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
+                ),
+              ),
+              SizedBox(width: 10),
+              Icon(
+                Icons.arrow_forward_ios,
+                color: Colors.white,
+                size: 18,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class MyColors {
   static const Color darkGrey = Color(0xFF0F0F0F);
   static const Color navyBlue = Color(0xFF232D3F);
   static const Color tealGreen = Color(0xFF005B41);
   static const Color darkCyan = Color(0xFF008170);
 }
+
