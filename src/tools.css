@@ -1,0 +1,278 @@
+:root{
+    --darkGray : #0F0F0F;
+   /* --navyBlue : #010512; */
+ 
+   --backgroundColor : #08041b;
+   /* --backgroundColor : #11696a; */
+ 
+   /* --backgroundColor : #0F0F0F; */
+   --neonButtonBackground : #09b399;
+   --buttonBackground : #08041b;
+   --whiteText : rgb(199, 199, 199);
+   --tealGreen : #005B41;
+   --darkCyan : #008170;
+   --navyBlue : #010512;
+ }
+
+
+*
+{
+    margin: 0;
+    padding: 0;
+    color: var(--whiteText);
+    font-family: 'Inter', sans-serif;
+}
+
+
+body
+{
+    background-color: var(--backgroundColor);
+}
+
+.navbar
+{
+    width: 80%;
+    margin: auto;
+    height: 3vh;
+}
+.mainText
+{
+    padding-top: 10vh;
+    width: 60%;
+    margin: auto;
+}
+
+.mainText > h1
+{
+    font-size: 8vh;
+    width: 40%;
+    margin: auto;
+}
+
+.mainText > p
+{
+    font-size: 2.8vh;
+}
+
+.p1
+{
+    padding-top: 5vh;
+    width:60%;
+    margin: auto;
+}
+
+.p2
+{
+    width: 50vh;
+    margin: auto;
+}
+
+.cards
+{
+    width: 80%;
+    margin: auto;
+    margin-top: 5vh;
+}
+
+.card > div > h1
+{
+    font-size: 2.8vh;
+    font-family: 'Inter', sans-serif;
+}
+
+.card > div > p
+{
+    font-size: 2.3vh;
+    font-family: 'Inter', sans-serif;
+    font-size: 2.5vh;
+}
+
+.card > div
+{
+    padding-left: 1vh;    
+}
+
+.ThreeCards
+{
+    display: flex;
+    width: 80%;
+    margin: auto;
+
+}
+
+.TwoCards
+{
+    display: flex;
+    width: 50%;
+    margin: auto;
+    margin-top: 3vh;
+
+}
+
+.card
+{
+    width: 190vh;
+    padding: 2vh;
+    padding-bottom: 0px;
+    margin-bottom: 2vh;
+    border: 2px solid rgb(158, 158, 158);
+    border-radius: 10px;
+    height: 10vh;
+    display: flex;
+    height: 20vh;
+    margin-left: 3vh;
+}
+img
+{
+    padding-top: 4vh;
+    width: 8vh;
+    height: 8vh;
+}
+
+@media screen and (max-width: 1741px) {
+.card > div > p
+{
+    font-family: 'Inter', sans-serif;
+    font-size: 1vh;
+}
+
+.mainText > h1
+{
+    font-size: 6vh;
+    width: 40%;
+    margin: auto;
+}
+
+.mainText > p
+{
+    font-size: 2vh;
+}
+}
+
+@media screen and (max-width: 1351px) {
+    .card > div > p
+    {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.5vh;
+    }
+    
+    .mainText > h1
+    {
+        font-size: 4vh;
+        width: 40%;
+        margin: auto;
+    }
+    
+    .mainText > p
+    {
+        font-size: 1.5vh;
+    }
+
+    .ThreeCards
+    {
+        flex-direction: column;
+        display: flex;
+    width: 50%;
+    margin: auto;
+    }
+    .TwoCards
+    {
+        flex-direction: column;
+    }
+.card
+{
+    width: 30vh;
+    padding: 2vh;
+    padding-bottom: 0px;
+    margin-bottom: 2vh;
+    border: 2px solid rgb(158, 158, 158);
+    border-radius: 10px;
+    height: 10vh;
+    display: flex;
+    height: 20vh;
+    margin-left: 3vh;
+}
+    }
+
+@media screen and (max-width: 648px) {
+.card > div > p
+{
+    font-family: 'Inter', sans-serif;
+    font-size: 0.5vh;
+}
+        
+.mainText > h1
+{
+    font-size: 3vh;
+    width: 40%;
+    margin: auto;
+}
+
+.mainText > p
+{
+    font-size: 1vh;
+}
+    
+.ThreeCards
+{
+    flex-direction: column;
+    display: flex;
+    width: 50%;
+    margin: auto;
+}
+.TwoCards
+{
+    flex-direction: column;
+}
+.card
+{
+width: 30vh;
+padding: 2vh;
+padding-bottom: 0px;
+margin-bottom: 2vh;
+border: 2px solid rgb(158, 158, 158);
+border-radius: 10px;
+height: 10vh;
+display: flex;
+height: 20vh;
+margin-left: 3vh;
+}
+.mainText > h1
+{
+    font-size: 4vh;
+    width: 50%;
+    margin: auto;
+}
+
+.mainText > p
+{
+
+    font-size: 1vh;
+}
+.p1
+{
+    padding-top: 3vh;
+    width:50%;
+    margin: auto;
+}
+
+.p2
+{
+    width: 20vh;
+    margin: auto;
+}
+}
+
+@media screen and (max-width: 400px) {
+.ThreeCards
+{
+    flex-direction: column;
+    display: flex;
+    width: 80%;
+    margin: auto;
+}
+.TwoCards
+{
+    flex-direction: column;
+}    
+    }
