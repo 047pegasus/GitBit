@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gitbit/screens/navigation.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -58,6 +59,10 @@ class _UsernameInputFormState extends State<UsernameInputForm> {
 
   void navigateToDashboard(String username) async {
     final userData = await fetchUserData(username);
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('username', username); // Store the username
+
     Navigator.push(
       context,
       MaterialPageRoute(

@@ -18,7 +18,7 @@ class _ToolsState extends State<Tools> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyColors.darkGrey,
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -29,31 +29,31 @@ class _ToolsState extends State<Tools> {
                 color: Colors.white,
               ),
             ),
-            SizedBox(height: 30.0),
+            SizedBox(height: 20.0),
             buildElevatedButtonWithIcon(
               onPressed: () {},
               icon: Image.asset('assets/gsoc.png', width: 30, height: 30),
               label: 'GSOC',
             ),
-            SizedBox(height: 10.0),
+            SizedBox(height: 15.0),
             buildElevatedButtonWithIcon(
               onPressed: () {},
               icon: Image.asset('assets/man.png', width: 30, height: 30),
               label: 'Forest Farmer',
             ),
-            SizedBox(height: 10.0),
+            SizedBox(height: 15.0),
             buildElevatedButtonWithIcon(
               onPressed: () {},
               icon: Image.asset('assets/notes.png', width: 30, height: 30),
               label: 'Resources',
             ),
-            SizedBox(height: 10.0),
+            SizedBox(height: 15.0),
             buildElevatedButtonWithIcon(
               onPressed: () {},
               icon: Image.asset('assets/snake.png', width: 30, height: 30),
               label: 'Snake',
             ),
-            SizedBox(height: 10.0),
+            SizedBox(height: 15.0),
             buildElevatedButtonWithIcon(
               onPressed: () {},
               icon: Image.asset('assets/git.png', width: 30, height: 30),
@@ -88,7 +88,7 @@ class _ToolsState extends State<Tools> {
           shape: MaterialStateProperty.all(
             RoundedRectangleBorder(
               side: BorderSide(color: Colors.white, width: 2.0),
-              borderRadius: BorderRadius.circular(10.0),
+              borderRadius: BorderRadius.circular(15.0),
             ),
           ),
         ),
