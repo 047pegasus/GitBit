@@ -1,12 +1,6 @@
 import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
 import { tokens } from "../theme";
 import {useNavigate} from "react-router-dom"
-// import { mockTransactions } from "../../data/mockData";
-import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
-import EmailIcon from "@mui/icons-material/Email";
-import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import TrafficIcon from "@mui/icons-material/Traffic";
 import Header from "./Header";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "../theme";
@@ -15,17 +9,10 @@ import axios from "axios";
 import ForkLeftIcon from '@mui/icons-material/ForkLeft';
 import StarIcon from '@mui/icons-material/Star';
 import PeopleIcon from '@mui/icons-material/People';
-// import Header from "../../components/Header";
-// import LineChart from "../../components/LineChart";
-// import GeographyChart from "../../components/GeographyChart";
-// import BarChart from "../../components/BarChart";
-// import StatBox from "../../components/StatBox";
-// import ProgressCircle from "../../components/ProgressCircle";
 
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import { FixedSizeList } from 'react-window';
 
 const Dashboard = () => {
   const [theme, colorMode] = useMode();
@@ -239,15 +226,7 @@ const Dashboard = () => {
             <h1 style={{paddingBottom : "0.5vh"}}>Top 15 repos</h1>
             <Box
         sx={{ marginTop : "-3.5vh" ,  width: '100%', height: 300, maxWidth: 1100 }}>
-            <FixedSizeList
-            height={250}
-            width={930}
-            itemSize={46}
-            itemCount={200}
-            overscanCount={5}
-            >
-            {renderRow}
-            </FixedSizeList>
+            
             </Box>
             </div>
 
@@ -320,15 +299,7 @@ const Dashboard = () => {
             <h1 style={{paddingBottom : "0.5vh"}}>Recent Forks</h1>
             <Box
         sx={{ marginTop : "-1.5vh" ,  width: '100%', height: 240, maxWidth: 480 }}>
-            <FixedSizeList
-            height={240}
-            width={480}
-            itemSize={46}
-            itemCount={200}
-            overscanCount={5}
-            >
-            {renderRow}
-            </FixedSizeList>
+       
             </Box>
             </div>
         </Box>
