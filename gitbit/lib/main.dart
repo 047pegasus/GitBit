@@ -1,33 +1,29 @@
+
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:gitbit/screens/login2.dart';
-import 'package:gitbit/screens/navigation.dart';
+import 'package:gitbit/firebase_options.dart';
 import 'package:gitbit/welcome.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  final prefs = await SharedPreferences.getInstance();
-  bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
-
-  runApp(MaterialApp(
-    home: isLoggedIn ? Homescreen('initialUsername', {}) : Welcome(),
-    routes: {
-      '/login': (context) => SignInPage(),
-      '/home': (context) => Homescreen('initialUsername', {}), // Change 'initialUsername' to the actual username
-    },
-  ));
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Welcome(),
-      routes: {
-        '/login': (context) => SignInPage(),
-        '/home': (context) => Homescreen('initialUsername', {}), // Change 'initialUsername' to the actual username
-      },
-    );
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title:'Gitbit',
+    home: Scaffold(
+      backgroundColor: Color(0xff0F0F0F),
+      body: Welcome(),
+    ),);
   }
 }

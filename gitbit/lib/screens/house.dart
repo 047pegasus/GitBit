@@ -1,36 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-class Dashboard extends StatefulWidget {
+class Dashboard extends StatelessWidget {
   final String username;
   final Map<String, dynamic> userData;
 
   Dashboard(this.username, this.userData);
-
-  @override
-  _DashboardState createState() => _DashboardState();
-}
-
-class _DashboardState extends State<Dashboard> {
-  @override
-  void initState() {
-    super.initState();
-    // Check and update the login status in SharedPreferences when the Dashboard is initialized.
-    checkAndUpdateLoginStatus();
-  }
-
-  // Function to check and update the login status using SharedPreferences.
-  void checkAndUpdateLoginStatus() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
-
-    // You can perform any additional actions based on the login status.
-    if (!isLoggedIn) {
-      // If the user is not logged in, you can navigate to the login screen.
-      Navigator.of(context).pushReplacementNamed('/login');
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,48 +18,33 @@ class _DashboardState extends State<Dashboard> {
             Padding(
               padding: const EdgeInsets.all(20),
               child: CircleAvatar(
-                backgroundImage: NetworkImage(widget.userData['avatar_url']),
+                backgroundImage: NetworkImage(userData['avatar_url']),
                 radius: 60,
               ),
             ),
             const SizedBox(height: 20),
             Text(
-              'WELCOME: ${widget.username}',
+              'WELCOME: $username',
               style: GoogleFonts.montserrat(
                 color: Colors.white,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            buildInfoTile("Name", widget.userData['name'] ?? 'N/A', Icons.person),
+            buildInfoTile("Name", userData['name'] ?? 'N/A', Icons.person),
             buildInfoTile(
-                "Location", widget.userData['location'] ?? 'N/A', Icons.location_on),
-            buildInfoTile("Bio", widget.userData['bio'] ?? 'N/A', Icons.info),
+                "Location", userData['location'] ?? 'N/A', Icons.location_on),
+            buildInfoTile("Bio", userData['bio'] ?? 'N/A', Icons.info),
             buildInfoTile(
-                "Followers", "${widget.userData['followers'] ?? 0}", Icons.people),
+                "Followers", "${userData['followers'] ?? 0}", Icons.people),
             buildInfoTile(
-                "Following", "${widget.userData['following'] ?? 0}", Icons.people),
+                "Following", "${userData['following'] ?? 0}", Icons.people),
             buildInfoTile("Public Repositories",
-                "${widget.userData['public_repos'] ?? 0}", Icons.folder),
-            buildInfoTile("Website", widget.userData['blog'] ?? 'N/A', Icons.web),
-            ElevatedButton(
-              onPressed: () {
-                _logout(context);
-              },
-              child: Text('Log Out'),
-            ),
+                "${userData['public_repos'] ?? 0}", Icons.folder),
+            buildInfoTile("Website", userData['blog'] ?? 'N/A', Icons.web),
           ],
         ),
       ),
-    );
-  }
-
-  void _logout(BuildContext context) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('isLoggedIn', false); // Mark the user as logged out.
-    Navigator.of(context).pushNamedAndRemoveUntil(
-      '/login', // Replace with your login route
-      (route) => false,
     );
   }
 

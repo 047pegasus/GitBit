@@ -4,7 +4,6 @@ import 'package:gitbit/screens/house.dart';
 import 'package:gitbit/screens/leaderboard.dart';
 import 'package:gitbit/screens/tools.dart';
 
-
 class Homescreen extends StatefulWidget {
   final String username;
   final Map<String, dynamic> userData;
@@ -31,7 +30,7 @@ class _HomescreenState extends State<Homescreen> {
     _pages = [
       Dashboard(username, userData), // Pass the username and userData here
       const Leaderboard(),
-       Tools(),
+      Tools(),
     ];
   }
 
