@@ -2,29 +2,55 @@ import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:gitbit/model.dart/alert.dart';
-import 'package:gitbit/model.dart/email.dart';
 import 'package:gitbit/screens/navigation.dart';
-
 import 'package:gitbit/screens/signup.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+void main() {
+  runApp(MaterialApp(
+    home: ButtonPage(),
+  ));
+}
 
 class ButtonPage extends StatefulWidget {
   @override
-  State<ButtonPage> createState() => _ButtonPageState();
+  _ButtonPageState createState() => _ButtonPageState();
 }
 
 class _ButtonPageState extends State<ButtonPage> {
+  @override
+  void initState() {
+    super.initState();
+    checkUserAuthentication();
+  }
+
+  void checkUserAuthentication() async {
+    final prefs = await SharedPreferences.getInstance();
+    final userUid = prefs.getString('userUid');
+    if (userUid != null) {
+      // User is already authenticated, navigate to the home screen
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => Homescreen()));
+    }
+  }
+
   void googleButton() {
     Dialogs.showCustomProgressbar(context);
 
     signInWithGoogle().then((user) {
       Navigator.pop(context);
       if (user != null) {
+        // Save the user's UID to SharedPreferences
+           saveUserUid(user.user!.uid);
+
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (_) => Homescreen()),
         );
+      } else {
+        // User sign-in failed
+        // Show an error message or take appropriate action
+        Dialogs.showSnackbar(context, "Sign-in failed");
       }
     });
   }
@@ -52,6 +78,12 @@ class _ButtonPageState extends State<ButtonPage> {
       return null;
     }
   }
+
+  void saveUserUid(String uid) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('userUid', uid);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +100,7 @@ class _ButtonPageState extends State<ButtonPage> {
                 color: Colors.white,
               ),
             ),
-            SizedBox(height: 10.0), // Add spacing
+            SizedBox(height: 10.0),
             Text(
               'Welcome to Gitbit',
               style: TextStyle(
@@ -78,34 +110,17 @@ class _ButtonPageState extends State<ButtonPage> {
             ),
             SizedBox(height: 30.0),
             buildElevatedButtonWithIcon(
-              onPressed: () {
-                   Navigator.push(context,
-                    MaterialPageRoute(builder: (_) =>EmailPasswordSignInPage()));
-              },
-              icon: Image.asset('assets/email_logo.png', width: 30, height: 30),
-              label: 'Sign In with Email',
-            ),
-            SizedBox(height: 20.0),
-            buildElevatedButtonWithIcon(
               onPressed: googleButton,
-              icon:
-                  Image.asset('assets/google_logo.png', width: 30, height: 30),
+              icon: Image.asset('assets/google_logo.png', width: 30, height: 30),
               label: 'Sign In with Google',
             ),
-            SizedBox(height: 20.0),
-            buildElevatedButtonWithIcon(
-              onPressed: () {
-               
-              },
-              icon:
-                  Image.asset('assets/github_logo.png', width: 40, height: 40),
-              label: 'Sign In with GitHub',
-            ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 30.0),
             TextButton(
               onPressed: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => Signup()));
+                  context,
+                  MaterialPageRoute(builder: (_) => Signup()),
+                );
               },
               child: Text(
                 'New User? Sign Up',
@@ -153,3 +168,21 @@ class MyColors {
   static const Color tealGreen = Color(0xFF005B41);
   static const Color darkCyan = Color(0xFF008170);
 }
+
+class Dialogs {
+  static void showCustomProgressbar(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+  }
+
+  static void showSnackbar(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+  }
+}
+

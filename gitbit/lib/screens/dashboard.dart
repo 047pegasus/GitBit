@@ -6,7 +6,7 @@ import 'dart:convert';
 class Dashboard extends StatelessWidget {
   final String username;
 
-  const Dashboard(this.username, {Key? key}) : super(key: key);
+  const Dashboard(this.username, {Key? key, required String githubId}) : super(key: key);
 
   Future<Map<String, dynamic>> fetchUserData() async {
     final response =

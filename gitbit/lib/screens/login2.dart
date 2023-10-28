@@ -3,11 +3,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:gitbit/screens/signin.dart';
 import 'package:lottie/lottie.dart';
 
-void main() {
-  runApp(MaterialApp(
-    home: SignInPage(),
-  ));
-}
 
 class SignInPage extends StatefulWidget {
   @override
@@ -41,7 +36,7 @@ class _SignInPageState extends State<SignInPage> {
               ),
             ),
             SizedBox(
-              height: 200,
+              height: 300,
               child: CarouselSlider(
                 items: [
                   _buildSlide('assets/xwirnzarW3.json', 'Text 1'),
@@ -49,7 +44,7 @@ class _SignInPageState extends State<SignInPage> {
                   _buildSlide('assets/kpEG3IE5gY.json', 'Text 3'),
                 ],
                 options: CarouselOptions(
-                  height: 200,
+                  height: 300,
                   enlargeCenterPage: true,
                   onPageChanged: (index, reason) {
                     setState(() {
