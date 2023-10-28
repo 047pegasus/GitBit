@@ -1,6 +1,7 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:gitbit/screens/login.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 void main() {
@@ -46,7 +47,7 @@ class _SignInPageState extends State<SignInPage> {
           children: <Widget>[
             Text(
               welcomeTexts[_currentSlideIndex],
-              style: TextStyle(
+              style: GoogleFonts.montserrat(
                 fontSize: 20,
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
@@ -68,6 +69,10 @@ class _SignInPageState extends State<SignInPage> {
                       _currentSlideIndex = index;
                     });
                   },
+                  autoPlay: true, // Enable auto-play
+                  autoPlayInterval: Duration(seconds: 3), // Auto-play interval
+                  autoPlayAnimationDuration: Duration(milliseconds: 800), // Animation duration
+                  autoPlayCurve: Curves.fastOutSlowIn, // Animation curve
                 ),
               ),
             ),
@@ -137,4 +142,3 @@ class MyColors {
   static const Color tealGreen = Color(0xFF005B41);
   static const Color darkCyan = Color(0xFF008170);
 }
-

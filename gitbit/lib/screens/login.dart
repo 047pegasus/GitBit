@@ -3,13 +3,58 @@ import 'package:gitbit/screens/navigation.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class UsernameInputScreen extends StatefulWidget {
-  @override
-  _UsernameInputScreenState createState() => _UsernameInputScreenState();
+void main() {
+  runApp(MaterialApp(
+    home: UsernameInputScreen(),
+  ));
 }
 
-class _UsernameInputScreenState extends State<UsernameInputScreen> {
+class UsernameInputScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: MyColors.darkGrey,
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Enter your GitHub username',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                ),
+              ),
+              SizedBox(height: 20.0),
+              Card(
+                color: MyColors.darkGrey,
+                elevation: 5,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16.0),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: UsernameInputForm(),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class UsernameInputForm extends StatefulWidget {
+  @override
+  _UsernameInputFormState createState() => _UsernameInputFormState();
+}
+
+class _UsernameInputFormState extends State<UsernameInputForm> {
   TextEditingController usernameController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   void navigateToDashboard(String username) async {
     final userData = await fetchUserData(username);
@@ -28,38 +73,65 @@ class _UsernameInputScreenState extends State<UsernameInputScreen> {
     if (response.statusCode == 200) {
       return json.decode(response.body);
     } else {
+      showSnackBar('Failed to load user data', isError: true);
       throw Exception('Failed to load user data');
     }
   }
 
+  void showSnackBar(String message, {bool isError = false}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          message,
+          style: TextStyle(
+            color: isError ? Colors.red : Colors.white,
+          ),
+        ),
+        backgroundColor: isError ? Colors.black : MyColors.tealGreen,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor:MyColors.darkGrey,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: TextField(
-                controller: usernameController,
-                decoration: InputDecoration(
-                  labelText: 'Enter GitHub Username',
-                  fillColor: Colors.white,
-                  filled: true,
-                ),
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: [
+          TextFormField(
+            controller: usernameController,
+            style: TextStyle(color: Colors.white),
+            decoration: InputDecoration(
+              labelText: 'GitHub Username',
+              labelStyle: TextStyle(color: Colors.white),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: MyColors.tealGreen),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: MyColors.tealGreen),
               ),
             ),
-            ElevatedButton(
-              onPressed: () {
+            validator: (value) {
+              if (value!.isEmpty) {
+                return 'Please enter a username';
+              }
+              return null;
+            },
+          ),
+          SizedBox(height: 20.0),
+          ElevatedButton(
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
                 String username = usernameController.text;
                 navigateToDashboard(username);
-              },
-              child: Text('Search'),
+              }
+            },
+            child: Text('Search'),
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(MyColors.tealGreen),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -67,7 +139,6 @@ class _UsernameInputScreenState extends State<UsernameInputScreen> {
 
 class MyColors {
   static const Color darkGrey = Color(0xFF0F0F0F);
-  static const Color navyBlue = Color(0xFF232D3F);
   static const Color tealGreen = Color(0xFF005B41);
   static const Color darkCyan = Color(0xFF008170);
 }

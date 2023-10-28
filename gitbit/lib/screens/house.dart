@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-
+import 'package:google_fonts/google_fonts.dart';
 
 class Dashboard extends StatelessWidget {
   final String username;
@@ -26,8 +25,8 @@ class Dashboard extends StatelessWidget {
             const SizedBox(height: 20),
             Text(
               'WELCOME: $username',
-              style: TextStyle(
-                color: MyColors.navyBlue,
+              style: GoogleFonts.montserrat(
+                color: Colors.white,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
@@ -53,35 +52,85 @@ class Dashboard extends StatelessWidget {
     return Container(
       width: double.infinity,
       margin: const EdgeInsets.all(10),
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [MyColors.navyBlue, MyColors.tealGreen],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: ListTile(
-        leading: Icon(
-          icon,
-          color: Colors.white,
-        ),
-        title: Text(
-          title,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
+      child: ElevatedContainer(
+        child: ListTile(
+          leading: Icon(
+            icon,
             color: Colors.white,
           ),
-        ),
-        subtitle: Text(
-          value,
-          style: TextStyle(
-            color: Colors.white,
+          title: Text(
+            title,
+            style: GoogleFonts.montserrat(
+              fontWeight: FontWeight.w500,
+              color: Colors.white,
+            ),
+          ),
+          subtitle: Text(
+            value,
+            style: GoogleFonts.montserrat(
+              color: Colors.white,
+            ),
           ),
         ),
       ),
     );
+  }
+}
+
+class ElevatedContainer extends StatefulWidget {
+  final Widget child;
+
+  ElevatedContainer({required this.child});
+
+  @override
+  _ElevatedContainerState createState() => _ElevatedContainerState();
+}
+
+class _ElevatedContainerState extends State<ElevatedContainer>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<Color?> _colorAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 2), // You can adjust the duration
+    );
+    _colorAnimation = ColorTween(
+      begin: MyColors.navyBlue,
+      end: MyColors.tealGreen,
+    ).animate(_controller);
+
+    // Start the animation and make it loop continuously
+    _controller.repeat(reverse: true);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _controller,
+      builder: (context, child) {
+        return Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            gradient: LinearGradient(
+              colors: [_colorAnimation.value!, _colorAnimation.value!],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+          child: widget.child,
+        );
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }
 

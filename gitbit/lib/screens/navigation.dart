@@ -31,7 +31,7 @@ class _HomescreenState extends State<Homescreen> {
     _pages = [
       Dashboard(username, userData), // Pass the username and userData here
       const Leaderboard(),
-      const Tools(),
+       Tools(),
     ];
   }
 
