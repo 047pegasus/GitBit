@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gitbit/screens/login2.dart';
+import 'package:gitbit/screens/login.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:simple_ripple_animation/simple_ripple_animation.dart';
@@ -18,7 +18,7 @@ class _WelcomeState extends State<Welcome> {
     Future.delayed(const Duration(seconds: 3), () {
       {
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => SignInPage()),
+          MaterialPageRoute(builder: (context) =>UsernameInputScreen()),
         );
       }
     });

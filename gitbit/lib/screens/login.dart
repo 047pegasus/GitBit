@@ -1,93 +1,83 @@
 import 'package:flutter/material.dart';
 import 'package:gitbit/screens/navigation.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 void main() {
-  runApp(const MaterialApp(
-    home: Login(),
-    debugShowCheckedModeBanner: false,
-  ));
+  runApp(MyApp());
 }
 
-class Login extends StatefulWidget {
-  const Login({
-    super.key,
-  });
-
+class MyApp extends StatelessWidget {
   @override
-  State<Login> createState() => _LoginState();
-}
-
-class _LoginState extends State<Login> {
-  final TextEditingController _usernameController = TextEditingController();
-
-  void _navigateToHomescreen(String username) {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => Homescreen(),
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: UsernameInputScreen(),
+      theme: ThemeData(
+        primaryColor: MyColors.navyBlue,
+        hintColor: MyColors.tealGreen,
+        scaffoldBackgroundColor: MyColors.darkGrey,
       ),
     );
+  }
+}
+
+class UsernameInputScreen extends StatefulWidget {
+  @override
+  _UsernameInputScreenState createState() => _UsernameInputScreenState();
+}
+
+class _UsernameInputScreenState extends State<UsernameInputScreen> {
+  TextEditingController usernameController = TextEditingController();
+
+  void navigateToDashboard(String username) async {
+    final userData = await fetchUserData(username);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => Homescreen(username, userData),
+      ),
+    );
+  }
+
+  Future<Map<String, dynamic>> fetchUserData(String username) async {
+    final response =
+        await http.get(Uri.parse('https://api.github.com/users/$username'));
+
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    } else {
+      throw Exception('Failed to load user data');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyColors.darkGrey,
+      backgroundColor:MyColors.darkGrey,
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'WELCOME',
-                style: GoogleFonts.montserrat(
-                  color: MyColors.tealGreen,
-                  fontSize: 34,
-                  fontWeight: FontWeight.bold,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: TextField(
+                controller: usernameController,
+                decoration: InputDecoration(
+                  labelText: 'Enter GitHub Username',
+                  fillColor: Colors.white,
+                  filled: true,
                 ),
               ),
-              const SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: TextField(
-                      controller: _usernameController,
-                      decoration: const InputDecoration(
-                        hintText: "Search Github-profile",
-                        focusedBorder: InputBorder.none,
-                        enabledBorder: InputBorder.none,
-                        focusColor: MyColors.navyBlue,
-                        fillColor: MyColors.darkCyan,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: MyColors.tealGreen,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  padding: const EdgeInsets.symmetric(horizontal: 40),
-                ),
-                onPressed: () {
-                  String username = _usernameController.text;
-                  _navigateToHomescreen(username);
-                },
-                child: const Text("Go"),
-              ),
-            ],
-          ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                String username = usernameController.text;
+                navigateToDashboard(username);
+              },
+              child: Text('Search'),
+            ),
+          ],
         ),
       ),
     );

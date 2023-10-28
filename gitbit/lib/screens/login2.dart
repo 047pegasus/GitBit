@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:gitbit/screens/signin.dart';
 import 'package:lottie/lottie.dart';
 
 
@@ -57,11 +56,9 @@ class _SignInPageState extends State<SignInPage> {
             SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => ButtonPage()));
               },
               child: Text(
-                'Sign In',
+                'Go',
                 style: TextStyle(
                   fontSize: 18,
                   color: Colors.white,
