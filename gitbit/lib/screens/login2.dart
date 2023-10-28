@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:gitbit/screens/login.dart';
 import 'package:lottie/lottie.dart';
 
 
@@ -56,6 +57,7 @@ class _SignInPageState extends State<SignInPage> {
             SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>UsernameInputScreen()));
               },
               child: Text(
                 'Go',
