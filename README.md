@@ -205,10 +205,13 @@ This project is licensed under the `ℹ️  LICENSE-TYPE` License. See the [LICE
 ## 👏 Acknowledgments
 We also would like to thank all the third party tools that we list on our project to help all the users through our website. Without these tools our project would not have been possible and we would like to thank all of these amaziong tools avaialable online to help us, ultimately help the dev community. Although we support all these endeavours, some of the top tols that we readily make availble to ur users in this alpha release of the application include the following:
 
-`- ℹ️ https://github.com/Platane/snk`
-`- ℹ️ https://github.com/ShashwatPS/Forest_Farmer`
-`- ℹ️ https://github.com/047pegasus/Zephyr/blob/sps/Web/src/Pages/Gsoc.jsx`
-`- ℹ️ https://github.com/047pegasus/Zephyr/blob/sps/Web/src/Pages/Trending.jsx`
+`https://github.com/Platane/snk`
+
+`https://github.com/ShashwatPS/Forest_Farmer`
+
+`https://github.com/047pegasus/Zephyr/blob/sps/Web/src/Pages/Gsoc.jsx`
+
+`https://github.com/047pegasus/Zephyr/blob/sps/Web/src/Pages/Trending.jsx`
 
 [↑ Return](#Top)
 
