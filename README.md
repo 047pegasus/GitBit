@@ -36,6 +36,7 @@
 - [📖 Table of Contents](#-table-of-contents)
 - [📍 Overview](#-overview)
 - [📦 Features](#-features)
+- [📃 Documentation](https://github.com/047pegasus/gitbit_docs)
 - [📂 Repository Structure](#-repository-structure)
 - [⚙️ Modules](#modules)
 - [🚀 Getting Started](#-getting-started)
