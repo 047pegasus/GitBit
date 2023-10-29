@@ -10,11 +10,6 @@ class Leaderboard extends StatefulWidget {
 class _LeaderboardState extends State<Leaderboard> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-    backgroundColor:Colors.black,
-      body: Container(
-        alignment: Alignment.center,
-        child: const Text("leaderboard",style: TextStyle(color: Colors.white)),)
-    );
+    return const Placeholder();
   }
 }
