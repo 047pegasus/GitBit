@@ -104,23 +104,6 @@ The possible features for the project are endless, but as an origin of a Hackath
 
 </details>
 
-<details closed><summary>Pages</summary>
-
-| File                                                                                                         | Summary                   |
-| ---                                                                                                          | ---                       |
-| [Profile.page.js](https://github.com/047pegasus/bookit/blob/main/bookit/src/pages/Profile.page.js)           | Profile Page for logged in user. |
-| [Login.page.js](https://github.com/047pegasus/bookit/blob/main/bookit/src/pages/Login.page.js)               | Login Page for user.|
-| [UserListings.js](https://github.com/047pegasus/bookit/blob/main/bookit/src/pages/UserListings.js)           | Page where user can biew all his/her  made listings on the webstore. |
-| [Listbook.css](https://github.com/047pegasus/bookit/blob/main/bookit/src/pages/Listbook.js)                  | Page where user can list a book by filling a simple form with details about the book. |
-| [History.page.js](https://github.com/047pegasus/bookit/blob/main/bookit/src/pages/History.page.js)           | Page to atore all history and transactions made by user.  |
-| [Home.page.js](https://github.com/047pegasus/bookit/blob/main/bookit/src/pages/Home.page.js)                 | Default landing page for logged in users.|
-| [Cart.page.js](https://github.com/047pegasus/bookit/blob/main/bookit/src/pages/Cart.page.js)                 | Basic Cart functionality page.|
-| [PrivateRoute.page.js](https://github.com/047pegasus/bookit/blob/main/bookit/src/pages/PrivateRoute.page.js) | Component housing logic to redirect and route to home page if user is logged in. |
-| [Reset.page.js](https://github.com/047pegasus/bookit/blob/main/bookit/src/pages/Reset.page.js)               | Page meant to reset user forgotten password.|
-| [Signup.page.js](https://github.com/047pegasus/bookit/blob/main/bookit/src/pages/Signup.page.js)             | SignUp page for user.|
-
-</details>
-
 ---
 
 ## 🚀 Getting Started
