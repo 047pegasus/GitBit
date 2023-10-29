@@ -45,10 +45,6 @@ dependencies:
   google_sign_in: ^6.1.5
   http: ^0.13.6
   lottie: ^2.6.0
-  mongo_dart: ^0.9.3
-  realm: ^1.2.0
-  screenshot: ^2.1.0
-  share: ^2.0.4
   shared_preferences: ^2.2.2
   shimmer: ^3.0.0
   simple_ripple_animation: ^0.0.7

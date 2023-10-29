@@ -2,11 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:gitbit/screens/navigation.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final prefs = await SharedPreferences.getInstance();
+  bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+
   runApp(MaterialApp(
-    home: UsernameInputScreen(),
+    home:
+        isLoggedIn ? Homescreen('initialUsername', {}) : UsernameInputScreen(),
   ));
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: UsernameInputScreen(),
+    );
+  }
 }
 
 class UsernameInputScreen extends StatelessWidget {
@@ -58,11 +74,17 @@ class _UsernameInputFormState extends State<UsernameInputForm> {
 
   void navigateToDashboard(String username) async {
     final userData = await fetchUserData(username);
-    Navigator.push(
+
+    // Set login status to true
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool('isLoggedIn', true);
+
+    Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(
         builder: (context) => Homescreen(username, userData),
       ),
+      (route) => false,
     );
   }
 
@@ -139,6 +161,7 @@ class _UsernameInputFormState extends State<UsernameInputForm> {
 
 class MyColors {
   static const Color darkGrey = Color(0xFF0F0F0F);
+  static const Color navyBlue = Color(0xFF232D3F);
   static const Color tealGreen = Color(0xFF005B41);
   static const Color darkCyan = Color(0xFF008170);
 }

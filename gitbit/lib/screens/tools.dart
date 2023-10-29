@@ -19,49 +19,47 @@ class _ToolsState extends State<Tools> {
     return Scaffold(
       backgroundColor: MyColors.darkGrey,
       body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                'GitHub Tools 🛠️',
-                style: GoogleFonts.montserrat(
-                  fontSize: 36,
-                  color: Colors.white,
-                ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'GitHub Tools 🛠️',
+              style: GoogleFonts.montserrat(
+                fontSize: 36,
+                color: Colors.white,
               ),
-              SizedBox(height: 20.0),
-              buildElevatedButtonWithIcon(
-                onPressed: () {},
-                icon: Image.asset('assets/gsoc.png', width: 30, height: 30),
-                label: 'GSOC',
-              ),
-              SizedBox(height: 15.0),
-              buildElevatedButtonWithIcon(
-                onPressed: () {},
-                icon: Image.asset('assets/man.png', width: 30, height: 30),
-                label: 'Forest Farmer',
-              ),
-              SizedBox(height: 15.0),
-              buildElevatedButtonWithIcon(
-                onPressed: () {},
-                icon: Image.asset('assets/notes.png', width: 30, height: 30),
-                label: 'Resources',
-              ),
-              SizedBox(height: 15.0),
-              buildElevatedButtonWithIcon(
-                onPressed: () {},
-                icon: Image.asset('assets/snake.png', width: 30, height: 30),
-                label: 'Snake',
-              ),
-              SizedBox(height: 15.0),
-              buildElevatedButtonWithIcon(
-                onPressed: () {},
-                icon: Image.asset('assets/git.png', width: 30, height: 30),
-                label: 'Git',
-              ),
-            ],
-          ),
+            ),
+            SizedBox(height: 20.0),
+            buildElevatedButtonWithIcon(
+              onPressed: () {},
+              icon: Image.asset('assets/gsoc.png', width: 30, height: 30),
+              label: 'GSOC',
+            ),
+            SizedBox(height: 15.0),
+            buildElevatedButtonWithIcon(
+              onPressed: () {},
+              icon: Image.asset('assets/man.png', width: 30, height: 30),
+              label: 'Forest Farmer',
+            ),
+            SizedBox(height: 15.0),
+            buildElevatedButtonWithIcon(
+              onPressed: () {},
+              icon: Image.asset('assets/notes.png', width: 30, height: 30),
+              label: 'Resources',
+            ),
+            SizedBox(height: 15.0),
+            buildElevatedButtonWithIcon(
+              onPressed: () {},
+              icon: Image.asset('assets/snake.png', width: 30, height: 30),
+              label: 'Snake',
+            ),
+            SizedBox(height: 15.0),
+            buildElevatedButtonWithIcon(
+              onPressed: () {},
+              icon: Image.asset('assets/git.png', width: 30, height: 30),
+              label: 'Git',
+            ),
+          ],
         ),
       ),
     );

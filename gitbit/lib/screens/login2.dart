@@ -52,7 +52,8 @@ class _SignInPageState extends State<SignInPage> {
                   },
                   autoPlay: true, // Enable auto-play
                   autoPlayInterval: Duration(seconds: 3), // Auto-play interval
-                  autoPlayAnimationDuration: Duration(milliseconds: 800), // Animation duration
+                  autoPlayAnimationDuration:
+                      Duration(milliseconds: 800), // Animation duration
                   autoPlayCurve: Curves.fastOutSlowIn, // Animation curve
                 ),
               ),

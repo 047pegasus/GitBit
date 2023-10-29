@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:gitbit/screens/house.dart';
 import 'package:gitbit/screens/leaderboard.dart';
 import 'package:gitbit/screens/tools.dart';
-import 'package:screenshot/screenshot.dart';
-import 'package:share/share.dart';
 
 class Homescreen extends StatefulWidget {
   final String username;
@@ -36,22 +34,10 @@ class _HomescreenState extends State<Homescreen> {
     ];
   }
 
-  ScreenshotController screenshotController = ScreenshotController();
-
-  void shareScreenshot() async {
-    try {
-      final screenshot = await screenshotController.capture();
-      if (screenshot != null) {
-        Share.shareFiles([screenshot], text: 'Check out my GitBit screenshot!');
-      }
-    } catch (e) {
-      print('Error sharing screenshot: $e');
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: MyColors.darkGrey,
       bottomNavigationBar: CurvedNavigationBar(
         height: 60,
         backgroundColor: MyColors.tealGreen,
@@ -59,23 +45,14 @@ class _HomescreenState extends State<Homescreen> {
           Icon(Icons.home, size: 30),
           Icon(Icons.leaderboard, size: 30),
           Icon(Icons.person, size: 30),
-          Icon(Icons.share, size: 30), // Add a share button
         ],
         onTap: (index) {
-          if (index == 3) {
-            // Share button tapped
-            shareScreenshot();
-          } else {
-            setState(() {
-              _selectedIndex = index;
-            });
-          }
+          setState(() {
+            _selectedIndex = index;
+          });
         },
       ),
-      body: Screenshot(
-        controller: screenshotController,
-        child: _pages[_selectedIndex],
-      ),
+      body: _pages[_selectedIndex],
     );
   }
 }
