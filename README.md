@@ -70,6 +70,11 @@ The possible features for the project are endless, but as an origin of a Hackath
 
 ---
 
+## Note ⭐ 
+***Who says one can only deploy a web or just an android app in a 36-hour hackathon. We did it!! We did both for you guys (although not too much but yes we did both of them!!) You can download the Android Installer APK in the `Releases` Section of the repository.***
+
+---
+
 ## 📂 Repository Structure
 
 ```sh
