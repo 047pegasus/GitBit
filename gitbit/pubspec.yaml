@@ -49,6 +49,7 @@ dependencies:
   shimmer: ^3.0.0
   simple_ripple_animation: ^0.0.7
   sqflite: ^2.3.0
+  syncfusion_flutter_charts: ^23.1.42
   webview_flutter: ^3.0.4
 
 dev_dependencies:
